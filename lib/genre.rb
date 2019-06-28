@@ -15,10 +15,17 @@ class Genre
   end
 
   def songs
-    Song.all.select do |song|
-      song.genre == self
-        
+    Song.all { |song| song.genre == self}
   end
 
+  def artists
+    songs.map do |song|
+      song.artist
+    end
+  end
+
+  def add_song(song)
+    songs << song
+  end
 
 end
